@@ -13,6 +13,15 @@ Matrix Matrix::add(const Matrix& other) const {
     return result;
 }
 
+Matrix Matrix::multiply(const Matrix& other) const {
+    Matrix result(rows, other.cols);
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < other.cols; j++)
+            for (int k = 0; k < cols; k++)
+                result.data[i][j] += data[i][k] * other.data[k][j];
+    return result;
+}
+
 void Matrix::print() const {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {

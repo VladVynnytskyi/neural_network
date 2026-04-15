@@ -2,16 +2,16 @@
 #include "matrix.h"
 
 int main() {
-    Matrix a(2, 2);
-    a.data[0][0] = 1; a.data[0][1] = 2;
-    a.data[1][0] = 3; a.data[1][1] = 4;
+    Matrix weights(2, 2);
+    weights.data[0][0] = 1; weights.data[0][1] = 2;
+    weights.data[1][0] = 3; weights.data[1][1] = 4;
 
-    Matrix b(2, 2);
-    b.data[0][0] = 10; b.data[0][1] = 20;
-    b.data[1][0] = 30; b.data[1][1] = 40;
+    Matrix input(2, 1);
+    input.data[0][0] = 5;
+    input.data[1][0] = 6;
 
-    Matrix c = a.add(b);
-    c.print();
+    Matrix output = weights.multiply(input);
+    output.print();
 
     return 0;
 }

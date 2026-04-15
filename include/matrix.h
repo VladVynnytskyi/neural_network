@@ -12,4 +12,5 @@ public:
     void print() const;
 
     Matrix add(const Matrix& other) const;
+    Matrix multiply(const Matrix& other) const;
 };
