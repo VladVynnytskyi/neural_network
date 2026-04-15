@@ -1,0 +1,18 @@
+# Build output
+build/
+*.o
+*.a
+neural_net
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data (large files)
+data/*.bin
+data/*.gz
