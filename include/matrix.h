@@ -10,4 +10,6 @@ public:
     Matrix(int rows, int cols);
 
     void print() const;
+
+    Matrix add(const Matrix& other) const;
 };
