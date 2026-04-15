@@ -3,8 +3,11 @@
 
 class Matrix {
 public:
-    int rows, cols;
+    int rows;
+    int cols;
     std::vector<std::vector<double>> data;
 
     Matrix(int rows, int cols);
+
+    void print() const;
 };
