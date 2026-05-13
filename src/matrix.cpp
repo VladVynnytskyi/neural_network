@@ -1,5 +1,6 @@
 #include "matrix.h"
 #include <iostream>
+#include <random>
 
 Matrix::Matrix(int rows, int cols) : rows(rows), cols(cols) {
     data.assign(rows, std::vector<double>(cols, 0.0));
@@ -29,4 +30,30 @@ void Matrix::print() const {
         }
         std::cout << "\n";
     }
+}
+
+Matrix Matrix::transpose() const {
+    Matrix result(cols, rows);
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            result.data[j][i] = data[i][j];
+    return result;
+}
+
+Matrix Matrix::elementWiseMultiply(const Matrix& other) const {
+    Matrix result(rows, cols);
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            result.data[i][j] = data[i][j] * other.data[i][j];
+    return result;
+}
+
+void Matrix::randomize() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dis(-1.0, 1.0);
+
+    for (int i = 0; i < rows; i++)
+        for (int j = 0; j < cols; j++)
+            data[i][j] = dis(gen);
 }
