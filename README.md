@@ -7,43 +7,43 @@ Course project for **Programowanie 2**, Jagiellonian University, 2025/2026.
 
 Build a fully functional feedforward neural network capable of learning from data using backpropagation and gradient descent — implemented entirely in C++ using only the standard library.
 
-## Planned Features
+## Features
 
-### Stage 1 — Matrix & Vector Math
+### Stage 1 — Matrix & Vector Math ✅
 - `Matrix` class with addition, multiplication, transpose
 - Element-wise operations, dot product
 - Unit tests for correctness
 
-### Stage 2 — Network Architecture
+### Stage 2 — Network Architecture ✅
 - `Layer` class (fully connected / dense layer)
 - Configurable number of neurons per layer
-- Weight and bias initialization (random, Xavier)
+- Weight and bias initialization (random)
 - Forward pass through a single layer
 
-### Stage 3 — Activation Functions
+### Stage 3 — Activation Functions ✅
 - Sigmoid
 - ReLU / Leaky ReLU
 - Tanh
 - Softmax (for output layer)
 
-### Stage 4 — Loss Functions & Forward Pass
+### Stage 4 — Loss Functions & Forward Pass ✅
 - Mean Squared Error (MSE)
 - Binary Cross-Entropy
 - Categorical Cross-Entropy
 - Full forward pass through the entire network
 
-### Stage 5 — Backpropagation
+### Stage 5 — Backpropagation ✅
 - Gradient computation via chain rule
 - Backprop through each layer
 - Gradient clipping to prevent explosion
 
-### Stage 6 — Training & Evaluation
+### Stage 6 — Training & Evaluation ✅
 - Stochastic Gradient Descent (SGD) optimizer
-- Mini-batch training loop
-- Train/validation split
+- Per-sample training loop with epoch shuffling
+- Train/validation split (80/20)
 - Accuracy and loss tracking per epoch
 - CSV data loader
-- Demo: digit classification on a dataset (e.g. MNIST subset or Iris)
+- Demo: Iris classification (~97% train accuracy, ~93% val accuracy)
 
 ## Project Structure
 
@@ -51,11 +51,10 @@ Build a fully functional feedforward neural network capable of learning from dat
 neural_network/
 ├── src/
 │   ├── matrix.cpp        # Matrix operations
-│   ├── layer.cpp         # Dense layer
+│   ├── layer.cpp         # Dense layer with activation and backprop
 │   ├── network.cpp       # Full network (forward + backward)
 │   ├── activations.cpp   # Activation functions
 │   ├── loss.cpp          # Loss functions
-│   ├── optimizer.cpp     # SGD and variants
 │   └── data_loader.cpp   # CSV reader / data utils
 ├── include/
 │   ├── matrix.h
@@ -63,12 +62,15 @@ neural_network/
 │   ├── network.h
 │   ├── activations.h
 │   ├── loss.h
-│   ├── optimizer.h
 │   └── data_loader.h
 ├── tests/
-│   └── test_matrix.cpp   # Unit tests
+│   ├── tests.h             # Test helper (check, approx, summary)
+│   ├── test_matrix.cpp
+│   ├── test_activations.cpp
+│   ├── test_loss.cpp
+│   └── test_layer.cpp
 ├── data/
-│   └── iris.csv          # Example dataset
+│   └── iris.csv            # UCI Iris dataset (150 samples)
 ├── main.cpp
 ├── Makefile
 └── README.md
@@ -77,8 +79,10 @@ neural_network/
 ## Build & Run
 
 ```bash
-make
-./neural_net
+make          # build
+./neural_net  # run training on Iris dataset
+make test     # build and run all unit tests
+make clean    # remove build artifacts
 ```
 
 ## Constraints
